@@ -29,7 +29,30 @@ function Ajoutercadidat{
     codidats.push(candidat);
     console.log("Candidat ajouté avec succès.");
 }
-
+function voter{
+    let cinelecteur = Number(prompt(" ajouter votre cin : "));
+    //// Vérifier si l'électeur a déjà voté
+    for(let i = 0; i < candidats.length; i++){
+        for(let j = 0; j < candidats.electeurs.length;j++){
+            if(candidats[i].electeurs[j] === cinelecteur){
+                console.log("vous avez deja vote. ")
+                return;
+            }
+        }
+    }
+    // Demander la CIN du candidat
+    let cincadidat = Number(prompt(" CIN du candidat : "));
+    //Chercher le candidat
+    for(let i = 0; i < candidats.length; i++){
+        if(candidats[i].cin === cincadidat){
+            candidat[i].electeurs.push(candidats);
+            console.log("Vote enregistré");
+                return;
+        }
+    }
+    // le candidat n'exite pas 
+console.log("Candidat introuvable.");
+}
 do{
     console.log("===== Gestion d'une campagne électorale =====;");
     console.log ("1. Ajouter un nouveau candidat :  ");
@@ -40,16 +63,13 @@ do{
             Ajoutercadidat();
             break;
         case 2 :
-            let Number = Number(prompt(""Combien de candidats voulez-vous ajouter ? ""))
+            let Number = Number(prompt("Combien de candidats voulez-vous ajouter ? "));
             for(let i = 0; i < Number,i++){
                 Ajoutercadidat();
             break;
             }
         case 3 :
-            //3. Afficher la liste des candidats :
-            // deux choix 1er 
-            //1er Trier les candidats par nombre de votes (ordre décroissant pour voir les gagnants).
-            // 2eme Filtrer et afficher uniquement les candidats d'un parti politique spécifique.
+            // voter 
              break;
     }
     
