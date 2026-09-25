@@ -159,7 +159,26 @@ function SupprimerCandidat() {
         console.log("Candidat introuvable.");
     }
 }
-
+function RechercherCandidat() {
+    let nom = prompt("Entrez le nom du candidat : ");
+    let trouve = false;
+    for (let i = 0; i < candidats.length; i++) {
+        if (candidats[i].nom === nom) {
+             console.log("===== Candidat =====");
+            console.log("CIN : " + candidats[i].cin);
+            console.log("Nom : " + candidats[i].nom);
+            console.log("Prénom : " + candidats[i].prenom);
+            console.log("Parti politique : " + candidats[i].partiPolitique);
+            console.log("Âge : " + candidats[i].age);
+            console.log("Nombre de votes : " + candidats[i].electeurs.length);
+            console.log("--------------------");
+            trouve = true;
+        }
+    }
+    if (!trouve) {
+        console.log("Candidat introuvable.");
+    }
+}
 do {
     console.log("===== Gestion d'une campagne électorale =====");
     console.log("1. Ajouter un candidat ");
@@ -168,6 +187,7 @@ do {
     console.log("4. Afficher la liste des candidat"); 
     console.log("5. Modifier les informations d'un candidat ");
     console.log("6. Supprimer un candidat ");
+    console.log("7. Rechercher des candidats ");
     choix = Number(prompt("Entrez votre choix : "));
     switch (choix) {
         case 1:
@@ -190,6 +210,9 @@ do {
             break;
         case 6 :
             SupprimerCandidat();
+            break;
+        case 7 :
+            RechercherCandidat();
             break;
     }
 } while (choix !== 0);
