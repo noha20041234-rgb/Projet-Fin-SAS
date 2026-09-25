@@ -104,6 +104,9 @@ function FiltrerParParti() {
             console.log("--------------------");
         }
     }
+    if( !trouve){
+        console.log("Aucun candidat trouve pour ce parti. ");
+    }
 }
 // Menu Affichage
 function AfficherCandidats() {
@@ -141,6 +144,21 @@ function ModifierCandidat() {
         console.log("Candidat introuvable.");
     }
 }
+function SupprimerCandidat() {
+    let cin = prompt("Entrez la CIN du candidat : ");
+    let trouve = false;
+     for (let i = 0; i < candidats.length; i++) {
+        if (candidats[i].cin === cin) {
+            candidats.splice(i, 1);
+            trouve = true;
+            console.log("Candidat supprimé avec succès.");
+            break;
+        }
+    }
+    if (!trouve) {
+        console.log("Candidat introuvable.");
+    }
+}
 
 do {
     console.log("===== Gestion d'une campagne électorale =====");
@@ -149,6 +167,7 @@ do {
     console.log("3. Voter pour un candidat ");
     console.log("4. Afficher la liste des candidat"); 
     console.log("5. Modifier les informations d'un candidat ");
+    console.log("6. Supprimer un candidat ");
     choix = Number(prompt("Entrez votre choix : "));
     switch (choix) {
         case 1:
@@ -168,6 +187,9 @@ do {
             break;
         case 5 :
             ModifierCandidat() ;
+            break;
+        case 6 :
+            SupprimerCandidat();
             break;
     }
 } while (choix !== 0);
