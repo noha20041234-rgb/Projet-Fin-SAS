@@ -44,7 +44,7 @@ function voter(){
         }
     }
     if (dejaVote) {
-        console.log("Vous avez déjà voté et vous n'avez pas le droit de modifier votre vote ni de voter à nouveau");
+        console.log("Vous avez déjà voté ");
         return;
     }
     // Demander l'identifiant ou la CIN du candidat
@@ -85,7 +85,7 @@ function TrierCandidats() {
                 candidats[j] = candidats[j + 1];
                 candidats[j + 1] = temp;
             }
-        }
+        } 
     }
     AfficherTousLesCandidats();
 }
@@ -179,9 +179,34 @@ function RechercherCandidat() {
     if (!trouve) {
         console.log("Candidat introuvable.");
     }
+    // statistique   nombre des candidat
 }
 function NombreTotalCandidats() {
     console.log("Nombre total de candidats : " + candidats.length);
+}
+//Afficher le nombre de candidats par parti politique.
+function CandidatsParParti() {
+    let partis = [];
+    for (let i = 0; i < candidats.length; i++) {
+        let existe = false;
+        for (let j = 0; j < partis.length; j++) {
+            if (partis[j].nom === candidats[i].partiPolitique) {
+                partis[j].nombre++;
+                existe = true;
+            }
+        }
+        if (!existe) {
+            partis.push({
+                nom: candidats[i].partiPolitique,
+                nombre: 1
+            });
+        }
+    }
+    console.log("===== Nombre de candidats par parti =====");
+
+    for (let i = 0; i < partis.length; i++) {
+        console.log(partis[i].nom + " : " + partis[i].nombre);
+    }
 }
 do {
     console.log("===== Gestion d'une campagne électorale =====");
@@ -193,6 +218,7 @@ do {
     console.log("6. Supprimer un candidat ");
     console.log("7. Rechercher des candidats ");
     console.log("8. Afficher le nombre total de candidat "); 
+    console.log("9. Afficher le nombre de candidats par parti politique "),
     choix = Number(prompt("Entrez votre choix : "));
     switch (choix) {
         case 1:
@@ -221,6 +247,9 @@ do {
             break;
         case 8 :
             NombreTotalCandidats();
+            break;
+        case 9 :
+            CandidatsParParti();
             break;
         
     }
