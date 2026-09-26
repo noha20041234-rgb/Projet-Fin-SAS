@@ -92,6 +92,7 @@ function TrierCandidats() {
 // par parti politique
 function FiltrerParParti() {
     let parti = prompt("Entrez le parti politique : ");
+    let trouve = false;
     for (let i = 0; i < candidats.length; i++) {
         if (candidats[i].partiPolitique === parti) {
             console.log("===== Candidat " + (i + 1) + " =====");
@@ -179,6 +180,9 @@ function RechercherCandidat() {
         console.log("Candidat introuvable.");
     }
 }
+function NombreTotalCandidats() {
+    console.log("Nombre total de candidats : " + candidats.length);
+}
 do {
     console.log("===== Gestion d'une campagne électorale =====");
     console.log("1. Ajouter un candidat ");
@@ -188,6 +192,7 @@ do {
     console.log("5. Modifier les informations d'un candidat ");
     console.log("6. Supprimer un candidat ");
     console.log("7. Rechercher des candidats ");
+    console.log("8. Afficher le nombre total de candidat "); 
     choix = Number(prompt("Entrez votre choix : "));
     switch (choix) {
         case 1:
@@ -214,6 +219,10 @@ do {
         case 7 :
             RechercherCandidat();
             break;
+        case 8 :
+            NombreTotalCandidats();
+            break;
+        
     }
 } while (choix !== 0);
 
