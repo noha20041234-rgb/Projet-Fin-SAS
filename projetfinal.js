@@ -95,6 +95,7 @@ function FiltrerParParti() {
     let trouve = false;
     for (let i = 0; i < candidats.length; i++) {
         if (candidats[i].partiPolitique === parti) {
+            trouve = true;
             console.log("===== Candidat " + (i + 1) + " =====");
             console.log("CIN : " + candidats[i].cin);
             console.log("Nom : " + candidats[i].nom);
@@ -105,8 +106,8 @@ function FiltrerParParti() {
             console.log("--------------------");
         }
     }
-    if( !trouve){
-        console.log("Aucun candidat trouve pour ce parti. ");
+    if (trouve === false) {
+        console.log("Aucun candidat trouve pour ce parti.");
     }
 }
 // Menu Affichage
@@ -145,6 +146,7 @@ function ModifierCandidat() {
         console.log("Candidat introuvable.");
     }
 }
+//SUPPRIMER 
 function SupprimerCandidat() {
     let cin = prompt("Entrez la CIN du candidat : ");
     let trouve = false;
@@ -160,6 +162,7 @@ function SupprimerCandidat() {
         console.log("Candidat introuvable.");
     }
 }
+//RECHERCHE
 function RechercherCandidat() {
     let nom = prompt("Entrez le nom du candidat : ");
     let trouve = false;
@@ -185,28 +188,12 @@ function NombreTotalCandidats() {
     console.log("Nombre total de candidats : " + candidats.length);
 }
 //Afficher le nombre de candidats par parti politique.
-function CandidatsParParti() {
-    let partis = [];
-    for (let i = 0; i < candidats.length; i++) {
-        let existe = false;
-        for (let j = 0; j < partis.length; j++) {
-            if (partis[j].nom === candidats[i].partiPolitique) {
-                partis[j].nombre++;
-                existe = true;
-            }
-        }
-        if (!existe) {
-            partis.push({
-                nom: candidats[i].partiPolitique,
-                nombre: 1
-            });
-        }
+function NombreTotalVotes() {
+    let numtotal = 0;
+    for(let i = 0; i < candidats.length; i++){
+        numtotal = numtotal + candidats[i].electeurs.length;
     }
-    console.log("===== Nombre de candidats par parti =====");
-
-    for (let i = 0; i < partis.length; i++) {
-        console.log(partis[i].nom + " : " + partis[i].nombre);
-    }
+    console.log("le nombre total de votes :" + numtotal)
 }
 do {
     console.log("===== Gestion d'une campagne électorale =====");
@@ -218,7 +205,7 @@ do {
     console.log("6. Supprimer un candidat ");
     console.log("7. Rechercher des candidats ");
     console.log("8. Afficher le nombre total de candidat "); 
-    console.log("9. Afficher le nombre de candidats par parti politique "),
+    console.log("9. Afficher le nombre total de votes exprimés dans toute l'élection "),
     choix = Number(prompt("Entrez votre choix : "));
     switch (choix) {
         case 1:
@@ -249,7 +236,7 @@ do {
             NombreTotalCandidats();
             break;
         case 9 :
-            CandidatsParParti();
+            NombreTotalVotes();
             break;
         
     }
