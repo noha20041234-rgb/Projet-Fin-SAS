@@ -182,47 +182,6 @@ function RechercherCandidat() {
     if (!trouve) {
         console.log("Candidat introuvable.");
     }
-    // statistique   nombre des candidat
-}
-function NombreTotalCandidats() {
-    console.log("Nombre total de candidats : " + candidats.length);
-}
-//Afficher le nombre de candidats par parti politique.
-function NombreTotalVotes() {
-    let numtotal = 0;
-    for(let i = 0; i < candidats.length; i++){
-        numtotal = numtotal + candidats[i].electeurs.length;
-    }
-    console.log("le nombre total de votes :" + numtotal)
-}
-function top3 (){
-    let classement = [];
-    for(let i = 0; i < candidats.length; i++){
-        classement.push(candidats[i]);
-    }
-    for(let i = 0; i < classement.length - 1; i++){
-        for(let j = 0; j < classement.length - 1 - i, j++){
-            if(classement[j].electeurs.length < classement[j+1].electeurs.length){
-                let temp = classement[j];
-                classement[j] = classement[j+1];
-                classement[j+1] = temp;
-            }
-        }
-    }
-    let limite = 3;
-    if(classement.length < 3){
-        limite = classement.length;
-    }
-    console.log("===== Top 3 des candidats =====");
-
-    for (let i = 0; i < limite; i++) {
-        console.log((i + 1) + ". " + classement[i].nom + " " + classement[i].prenom);
-        console.log("CIN : " + classement[i].cin);
-        console.log("Parti politique : " + classement[i].partiPolitique);
-        console.log("Âge : " + classement[i].age);
-        console.log("Nombre de votes : " + classement[i].electeurs.length);
-        console.log("--------------------");
-    }
 }
 do {
     console.log("===== Gestion d'une campagne électorale =====");
@@ -233,8 +192,6 @@ do {
     console.log("5. Modifier les informations d'un candidat ");
     console.log("6. Supprimer un candidat ");
     console.log("7. Rechercher des candidats ");
-    console.log("8. Afficher le nombre total de candidat "); 
-    console.log("9. Afficher le nombre total de votes exprimés dans toute l'élection "),
     choix = Number(prompt("Entrez votre choix : "));
     switch (choix) {
         case 1:
@@ -261,13 +218,7 @@ do {
         case 7 :
             RechercherCandidat();
             break;
-        case 8 :
-            NombreTotalCandidats();
-            break;
-        case 9 :
-            NombreTotalVotes();
-            break;
-        
+   
     }
 } while (choix !== 0);
 
